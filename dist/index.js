@@ -1,4 +1,4 @@
-module.exports =
+require('./sourcemap-register.js');module.exports =
 /******/ (function(modules, runtime) { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The module cache
@@ -34,7 +34,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(131);
+/******/ 		return __webpack_require__(526);
 /******/ 	};
 /******/ 	// initialize runtime
 /******/ 	runtime(__webpack_require__);
@@ -3160,98 +3160,6 @@ module.exports = uniq;
 /***/ (function(module) {
 
 module.exports = require("child_process");
-
-/***/ }),
-
-/***/ 131:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(769);
-const core = __importStar(__webpack_require__(470));
-const github = __importStar(__webpack_require__(469));
-const issue_details_1 = __webpack_require__(858);
-const tasks_1 = __webpack_require__(975);
-function run() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const args = getAndValidateArgs();
-            let issue = github.context.payload.issue;
-            if (!issue) {
-                core.error('No issue context found. This action can only run on issue creation.');
-                return;
-            }
-            core.info('Starting GitHub Client');
-            const client = new github.GitHub(args.repoToken);
-            core.info(`Loading config file at ${args.configPath}`);
-            const config = yield getConfig(client, args.configPath);
-            console.log(config);
-            yield processIssue(client, config, issue.number);
-        }
-        catch (error) {
-            core.error(error);
-            core.setFailed(error.message);
-        }
-    });
-}
-function processIssue(client, config, issueId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const issue = yield issue_details_1.getIssueDetails(client, issueId);
-        if (config.validate_commit_hash) {
-            tasks_1.validateCommitHash(client, config, issue);
-        }
-    });
-}
-function getConfig(client, configPath) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield client.repos.getContents({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            path: configPath,
-            ref: github.context.sha
-        });
-        // @ts-ignore
-        return JSON.parse(Buffer.from(response.data.content, 'base64').toString());
-    });
-}
-function getAndValidateArgs() {
-    return {
-        repoToken: core.getInput('repo-token', { required: true }),
-        configPath: core.getInput('config-path', { required: false })
-    };
-}
-run();
-
 
 /***/ }),
 
@@ -8008,6 +7916,98 @@ module.exports.Collection = Hook.Collection
 
 /***/ }),
 
+/***/ 526:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(751);
+const core = __importStar(__webpack_require__(470));
+const github = __importStar(__webpack_require__(469));
+const issue_details_1 = __webpack_require__(858);
+const tasks_1 = __webpack_require__(975);
+function run() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const args = getAndValidateArgs();
+            let issue = github.context.payload.issue;
+            if (!issue) {
+                core.error('No issue context found. This action can only run on issue creation.');
+                return;
+            }
+            core.info('Starting GitHub Client');
+            const client = new github.GitHub(args.repoToken);
+            core.info(`Loading config file at ${args.configPath}`);
+            const config = yield getConfig(client, args.configPath);
+            console.log(config);
+            yield processIssue(client, config, issue.number);
+        }
+        catch (error) {
+            core.error(error);
+            core.setFailed(error.message);
+        }
+    });
+}
+function processIssue(client, config, issueId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const issue = yield issue_details_1.getIssueDetails(client, issueId);
+        if (config.validate_commit_hash) {
+            tasks_1.validateCommitHash(client, config, issue);
+        }
+    });
+}
+function getConfig(client, configPath) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield client.repos.getContents({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            path: configPath,
+            ref: github.context.sha
+        });
+        // @ts-ignore
+        return JSON.parse(Buffer.from(response.data.content, 'base64').toString());
+    });
+}
+function getAndValidateArgs() {
+    return {
+        repoToken: core.getInput('repo-token', { required: true }),
+        configPath: core.getInput('config-path', { required: false })
+    };
+}
+run();
+
+
+/***/ }),
+
 /***/ 529:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -9142,6 +9142,39 @@ module.exports = require("fs");
 
 /***/ }),
 
+/***/ 751:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const ModuleAlias = __importStar(__webpack_require__(123));
+ModuleAlias.addAliases({
+    '~': __dirname
+});
+
+
+/***/ }),
+
 /***/ 753:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -9331,39 +9364,6 @@ function getUserAgent() {
 
 exports.getUserAgent = getUserAgent;
 //# sourceMappingURL=index.js.map
-
-
-/***/ }),
-
-/***/ 769:
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const ModuleAlias = __importStar(__webpack_require__(123));
-ModuleAlias.addAliases({
-    '~': __dirname
-});
 
 
 /***/ }),
@@ -25778,3 +25778,4 @@ eval("require")("~/tasks");
 /******/ 	
 /******/ }
 );
+//# sourceMappingURL=index.js.map
