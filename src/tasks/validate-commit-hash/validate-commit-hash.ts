@@ -92,12 +92,13 @@ async function findCommit(
     params.since = date.toISOString();
   }
 
-  console.log({ params })
-
   const response = await client.repos.listCommits(params);
+
+  console.log({ params, response })
 
   for (const commit of response.data) {
     if (commit.sha.indexOf(commitHash) === 0) {
+      console.log({ commit, commitHash })
       return commit;
     }
   }

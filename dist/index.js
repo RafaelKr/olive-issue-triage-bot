@@ -45456,10 +45456,11 @@ function findCommit(client, config, commitHash) {
             const date = date_fns_1.startOfDay(date_fns_1.subDays(new Date(), userParams.since_in_days));
             params.since = date.toISOString();
         }
-        console.log({ params });
         const response = yield client.repos.listCommits(params);
+        console.log({ params, response });
         for (const commit of response.data) {
             if (commit.sha.indexOf(commitHash) === 0) {
+                console.log({ commit, commitHash });
                 return commit;
             }
         }
