@@ -2,15 +2,7 @@ require('./sourcemap-register.js');module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9674:
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse("{\"_from\":\"@octokit/rest@^16.36.0\",\"_id\":\"@octokit/rest@16.43.2\",\"_inBundle\":false,\"_integrity\":\"sha512-ngDBevLbBTFfrHZeiS7SAMAZ6ssuVmXuya+F/7RaVvlysgGa1JKJkKWY+jV6TCJYcW0OALfJ7nTIGXcBXzycfQ==\",\"_location\":\"/@octokit/rest\",\"_phantomChildren\":{\"deprecation\":\"2.3.1\",\"once\":\"1.4.0\",\"os-name\":\"3.1.0\"},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"@octokit/rest@^16.36.0\",\"name\":\"@octokit/rest\",\"escapedName\":\"@octokit%2frest\",\"scope\":\"@octokit\",\"rawSpec\":\"^16.36.0\",\"saveSpec\":null,\"fetchSpec\":\"^16.36.0\"},\"_requiredBy\":[\"/\",\"/@actions/github\"],\"_resolved\":\"https://registry.npmjs.org/@octokit/rest/-/rest-16.43.2.tgz\",\"_shasum\":\"c53426f1e1d1044dee967023e3279c50993dd91b\",\"_spec\":\"@octokit/rest@^16.36.0\",\"_where\":\"/home/rafael/coding/github/olive-issue-triage-bot\",\"author\":{\"name\":\"Gregor Martynus\",\"url\":\"https://github.com/gr2m\"},\"bugs\":{\"url\":\"https://github.com/octokit/rest.js/issues\"},\"bundleDependencies\":false,\"bundlesize\":[{\"path\":\"./dist/octokit-rest.min.js.gz\",\"maxSize\":\"33 kB\"}],\"contributors\":[{\"name\":\"Mike de Boer\",\"email\":\"info@mikedeboer.nl\"},{\"name\":\"Fabian Jakobs\",\"email\":\"fabian@c9.io\"},{\"name\":\"Joe Gallo\",\"email\":\"joe@brassafrax.com\"},{\"name\":\"Gregor Martynus\",\"url\":\"https://github.com/gr2m\"}],\"dependencies\":{\"@octokit/auth-token\":\"^2.4.0\",\"@octokit/plugin-paginate-rest\":\"^1.1.1\",\"@octokit/plugin-request-log\":\"^1.0.0\",\"@octokit/plugin-rest-endpoint-methods\":\"2.4.0\",\"@octokit/request\":\"^5.2.0\",\"@octokit/request-error\":\"^1.0.2\",\"atob-lite\":\"^2.0.0\",\"before-after-hook\":\"^2.0.0\",\"btoa-lite\":\"^1.0.0\",\"deprecation\":\"^2.0.0\",\"lodash.get\":\"^4.4.2\",\"lodash.set\":\"^4.3.2\",\"lodash.uniq\":\"^4.5.0\",\"octokit-pagination-methods\":\"^1.1.0\",\"once\":\"^1.4.0\",\"universal-user-agent\":\"^4.0.0\"},\"deprecated\":false,\"description\":\"GitHub REST API client for Node.js\",\"devDependencies\":{\"@gimenete/type-writer\":\"^0.1.3\",\"@octokit/auth\":\"^1.1.1\",\"@octokit/fixtures-server\":\"^5.0.6\",\"@octokit/graphql\":\"^4.2.0\",\"@types/node\":\"^13.1.0\",\"bundlesize\":\"^0.18.0\",\"chai\":\"^4.1.2\",\"compression-webpack-plugin\":\"^3.1.0\",\"cypress\":\"^4.0.0\",\"glob\":\"^7.1.2\",\"http-proxy-agent\":\"^4.0.0\",\"lodash.camelcase\":\"^4.3.0\",\"lodash.merge\":\"^4.6.1\",\"lodash.upperfirst\":\"^4.3.1\",\"lolex\":\"^6.0.0\",\"mkdirp\":\"^1.0.0\",\"mocha\":\"^7.0.1\",\"mustache\":\"^4.0.0\",\"nock\":\"^11.3.3\",\"npm-run-all\":\"^4.1.2\",\"nyc\":\"^15.0.0\",\"prettier\":\"^1.14.2\",\"proxy\":\"^1.0.0\",\"semantic-release\":\"^17.0.0\",\"sinon\":\"^8.0.0\",\"sinon-chai\":\"^3.0.0\",\"sort-keys\":\"^4.0.0\",\"string-to-arraybuffer\":\"^1.0.0\",\"string-to-jsdoc-comment\":\"^1.0.0\",\"typescript\":\"^3.3.1\",\"webpack\":\"^4.0.0\",\"webpack-bundle-analyzer\":\"^3.0.0\",\"webpack-cli\":\"^3.0.0\"},\"files\":[\"index.js\",\"index.d.ts\",\"lib\",\"plugins\"],\"homepage\":\"https://github.com/octokit/rest.js#readme\",\"keywords\":[\"octokit\",\"github\",\"rest\",\"api-client\"],\"license\":\"MIT\",\"name\":\"@octokit/rest\",\"nyc\":{\"ignore\":[\"test\"]},\"publishConfig\":{\"access\":\"public\"},\"release\":{\"publish\":[\"@semantic-release/npm\",{\"path\":\"@semantic-release/github\",\"assets\":[\"dist/*\",\"!dist/*.map.gz\"]}]},\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/octokit/rest.js.git\"},\"scripts\":{\"build\":\"npm-run-all build:*\",\"build:browser\":\"npm-run-all build:browser:*\",\"build:browser:development\":\"webpack --mode development --entry . --output-library=Octokit --output=./dist/octokit-rest.js --profile --json > dist/bundle-stats.json\",\"build:browser:production\":\"webpack --mode production --entry . --plugin=compression-webpack-plugin --output-library=Octokit --output-path=./dist --output-filename=octokit-rest.min.js --devtool source-map\",\"build:ts\":\"npm run -s update-endpoints:typescript\",\"coverage\":\"nyc report --reporter=html && open coverage/index.html\",\"generate-bundle-report\":\"webpack-bundle-analyzer dist/bundle-stats.json --mode=static --no-open --report dist/bundle-report.html\",\"lint\":\"prettier --check '{lib,plugins,scripts,test}/**/*.{js,json,ts}' 'docs/*.{js,json}' 'docs/src/**/*' index.js README.md package.json\",\"lint:fix\":\"prettier --write '{lib,plugins,scripts,test}/**/*.{js,json,ts}' 'docs/*.{js,json}' 'docs/src/**/*' index.js README.md package.json\",\"postvalidate:ts\":\"tsc --noEmit --target es6 test/typescript-validate.ts\",\"prebuild:browser\":\"mkdirp dist/\",\"pretest\":\"npm run -s lint\",\"prevalidate:ts\":\"npm run -s build:ts\",\"start-fixtures-server\":\"octokit-fixtures-server\",\"test\":\"nyc mocha test/mocha-node-setup.js \\\"test/*/**/*-test.js\\\"\",\"test:browser\":\"cypress run --browser chrome\",\"update-endpoints\":\"npm-run-all update-endpoints:*\",\"update-endpoints:fetch-json\":\"node scripts/update-endpoints/fetch-json\",\"update-endpoints:typescript\":\"node scripts/update-endpoints/typescript\",\"validate:ts\":\"tsc --target es6 --noImplicitAny index.d.ts\"},\"types\":\"index.d.ts\",\"version\":\"16.43.2\"}");
-
-/***/ }),
-
-/***/ 7351:
+/***/ 6697:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -109,7 +101,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 2186:
+/***/ 1449:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,7 +123,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __webpack_require__(7351);
+const command_1 = __webpack_require__(6697);
 const os = __importStar(__webpack_require__(2087));
 const path = __importStar(__webpack_require__(5622));
 /**
@@ -338,7 +330,7 @@ exports.getState = getState;
 
 /***/ }),
 
-/***/ 4087:
+/***/ 9394:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -391,7 +383,7 @@ exports.Context = Context;
 
 /***/ }),
 
-/***/ 5438:
+/***/ 7871:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -405,10 +397,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 // Originally pulled from https://github.com/JasonEtco/actions-toolkit/blob/master/src/github.ts
-const graphql_1 = __webpack_require__(8467);
-const rest_1 = __webpack_require__(9351);
-const Context = __importStar(__webpack_require__(4087));
-const httpClient = __importStar(__webpack_require__(9925));
+const graphql_1 = __webpack_require__(7186);
+const rest_1 = __webpack_require__(2401);
+const Context = __importStar(__webpack_require__(9394));
+const httpClient = __importStar(__webpack_require__(4258));
 // We need this in order to extend Octokit
 rest_1.Octokit.prototype = new rest_1.Octokit();
 exports.context = new Context.Context();
@@ -506,7 +498,7 @@ exports.GitHub = GitHub;
 
 /***/ }),
 
-/***/ 9925:
+/***/ 4258:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -515,7 +507,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const url = __webpack_require__(8835);
 const http = __webpack_require__(8605);
 const https = __webpack_require__(7211);
-const pm = __webpack_require__(6443);
+const pm = __webpack_require__(7494);
 let tunnel;
 var HttpCodes;
 (function (HttpCodes) {
@@ -925,7 +917,7 @@ class HttpClient {
         if (useProxy) {
             // If using proxy, need tunnel
             if (!tunnel) {
-                tunnel = __webpack_require__(4294);
+                tunnel = __webpack_require__(5606);
             }
             const agentOptions = {
                 maxSockets: maxSockets,
@@ -1045,7 +1037,7 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 6443:
+/***/ 7494:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1111,7 +1103,7 @@ exports.checkBypass = checkBypass;
 
 /***/ }),
 
-/***/ 334:
+/***/ 1721:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1168,7 +1160,7 @@ exports.createTokenAuth = createTokenAuth;
 
 /***/ }),
 
-/***/ 9440:
+/***/ 6133:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1176,8 +1168,8 @@ exports.createTokenAuth = createTokenAuth;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var isPlainObject = __webpack_require__(3287);
-var universalUserAgent = __webpack_require__(5030);
+var isPlainObject = __webpack_require__(3942);
+var universalUserAgent = __webpack_require__(7870);
 
 function lowercaseKeys(object) {
   if (!object) {
@@ -1553,7 +1545,7 @@ exports.endpoint = endpoint;
 
 /***/ }),
 
-/***/ 8467:
+/***/ 7186:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1561,8 +1553,8 @@ exports.endpoint = endpoint;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var request = __webpack_require__(6234);
-var universalUserAgent = __webpack_require__(5030);
+var request = __webpack_require__(5849);
+var universalUserAgent = __webpack_require__(7870);
 
 const VERSION = "4.5.6";
 
@@ -1669,7 +1661,7 @@ exports.withCustomRequest = withCustomRequest;
 
 /***/ }),
 
-/***/ 4193:
+/***/ 37:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1819,7 +1811,7 @@ exports.paginateRest = paginateRest;
 
 /***/ }),
 
-/***/ 8883:
+/***/ 7605:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1857,7 +1849,7 @@ exports.requestLog = requestLog;
 
 /***/ }),
 
-/***/ 3044:
+/***/ 3788:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1865,7 +1857,7 @@ exports.requestLog = requestLog;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var deprecation = __webpack_require__(8932);
+var deprecation = __webpack_require__(7570);
 
 var endpointsByScope = {
   actions: {
@@ -15061,7 +15053,7 @@ exports.restEndpointMethods = restEndpointMethods;
 
 /***/ }),
 
-/***/ 537:
+/***/ 944:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -15071,8 +15063,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var deprecation = __webpack_require__(8932);
-var once = _interopDefault(__webpack_require__(1223));
+var deprecation = __webpack_require__(7570);
+var once = _interopDefault(__webpack_require__(6830));
 
 const logOnce = once(deprecation => console.warn(deprecation));
 /**
@@ -15124,7 +15116,7 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 6234:
+/***/ 5849:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -15134,11 +15126,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var endpoint = __webpack_require__(9440);
-var universalUserAgent = __webpack_require__(5030);
-var isPlainObject = __webpack_require__(3287);
-var nodeFetch = _interopDefault(__webpack_require__(467));
-var requestError = __webpack_require__(537);
+var endpoint = __webpack_require__(6133);
+var universalUserAgent = __webpack_require__(7870);
+var isPlainObject = __webpack_require__(3942);
+var nodeFetch = _interopDefault(__webpack_require__(27));
+var requestError = __webpack_require__(944);
 
 const VERSION = "5.4.8";
 
@@ -15280,25 +15272,25 @@ exports.request = request;
 
 /***/ }),
 
-/***/ 9351:
+/***/ 2401:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const { requestLog } = __webpack_require__(8883);
+const { requestLog } = __webpack_require__(7605);
 const {
   restEndpointMethods
-} = __webpack_require__(3044);
+} = __webpack_require__(3788);
 
-const Core = __webpack_require__(9833);
+const Core = __webpack_require__(7984);
 
 const CORE_PLUGINS = [
-  __webpack_require__(4555),
-  __webpack_require__(3691), // deprecated: remove in v17
+  __webpack_require__(5499),
+  __webpack_require__(3639), // deprecated: remove in v17
   requestLog,
-  __webpack_require__(8579),
+  __webpack_require__(8462),
   restEndpointMethods,
-  __webpack_require__(2657),
+  __webpack_require__(2043),
 
-  __webpack_require__(2072) // deprecated: remove in v17
+  __webpack_require__(8768) // deprecated: remove in v17
 ];
 
 const OctokitRest = Core.plugin(CORE_PLUGINS);
@@ -15330,15 +15322,15 @@ module.exports = Octokit;
 
 /***/ }),
 
-/***/ 823:
+/***/ 8147:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = Octokit;
 
-const { request } = __webpack_require__(6234);
-const Hook = __webpack_require__(3682);
+const { request } = __webpack_require__(5849);
+const Hook = __webpack_require__(2202);
 
-const parseClientOptions = __webpack_require__(4613);
+const parseClientOptions = __webpack_require__(2864);
 
 function Octokit(plugins, options) {
   options = options || {};
@@ -15366,23 +15358,23 @@ function Octokit(plugins, options) {
 
 /***/ }),
 
-/***/ 9833:
+/***/ 7984:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const factory = __webpack_require__(5320);
+const factory = __webpack_require__(4429);
 
 module.exports = factory();
 
 
 /***/ }),
 
-/***/ 5320:
+/***/ 4429:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = factory;
 
-const Octokit = __webpack_require__(823);
-const registerPlugin = __webpack_require__(7826);
+const Octokit = __webpack_require__(8147);
+const registerPlugin = __webpack_require__(4501);
 
 function factory(plugins) {
   const Api = Octokit.bind(null, plugins || []);
@@ -15393,14 +15385,14 @@ function factory(plugins) {
 
 /***/ }),
 
-/***/ 4613:
+/***/ 2864:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = parseOptions;
 
-const { Deprecation } = __webpack_require__(8932);
-const { getUserAgent } = __webpack_require__(3318);
-const once = __webpack_require__(1223);
+const { Deprecation } = __webpack_require__(7570);
+const { getUserAgent } = __webpack_require__(2470);
+const once = __webpack_require__(6830);
 
 const pkg = __webpack_require__(9674);
 
@@ -15489,12 +15481,12 @@ function parseOptions(options, log, hook) {
 
 /***/ }),
 
-/***/ 7826:
+/***/ 4501:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = registerPlugin;
 
-const factory = __webpack_require__(5320);
+const factory = __webpack_require__(4429);
 
 function registerPlugin(plugins, pluginFunction) {
   return factory(
@@ -15505,7 +15497,7 @@ function registerPlugin(plugins, pluginFunction) {
 
 /***/ }),
 
-/***/ 6239:
+/***/ 5494:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -15515,8 +15507,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var deprecation = __webpack_require__(8932);
-var once = _interopDefault(__webpack_require__(1223));
+var deprecation = __webpack_require__(7570);
+var once = _interopDefault(__webpack_require__(6830));
 
 const logOnce = once(deprecation => console.warn(deprecation));
 /**
@@ -15568,7 +15560,7 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 3318:
+/***/ 2470:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -15578,7 +15570,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var osName = _interopDefault(__webpack_require__(4824));
+var osName = _interopDefault(__webpack_require__(1778));
 
 function getUserAgent() {
   try {
@@ -15598,13 +15590,13 @@ exports.getUserAgent = getUserAgent;
 
 /***/ }),
 
-/***/ 795:
+/***/ 150:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticate;
 
-const { Deprecation } = __webpack_require__(8932);
-const once = __webpack_require__(1223);
+const { Deprecation } = __webpack_require__(7570);
+const once = __webpack_require__(6830);
 
 const deprecateAuthenticate = once((log, deprecation) => log.warn(deprecation));
 
@@ -15657,13 +15649,13 @@ function authenticate(state, options) {
 
 /***/ }),
 
-/***/ 7578:
+/***/ 5672:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationBeforeRequest;
 
-const btoa = __webpack_require__(2358);
-const uniq = __webpack_require__(8216);
+const btoa = __webpack_require__(1371);
+const uniq = __webpack_require__(4344);
 
 function authenticationBeforeRequest(state, options) {
   if (!state.auth.type) {
@@ -15707,19 +15699,19 @@ function authenticationBeforeRequest(state, options) {
 
 /***/ }),
 
-/***/ 3691:
+/***/ 3639:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationPlugin;
 
-const { Deprecation } = __webpack_require__(8932);
-const once = __webpack_require__(1223);
+const { Deprecation } = __webpack_require__(7570);
+const once = __webpack_require__(6830);
 
 const deprecateAuthenticate = once((log, deprecation) => log.warn(deprecation));
 
-const authenticate = __webpack_require__(795);
-const beforeRequest = __webpack_require__(7578);
-const requestError = __webpack_require__(4275);
+const authenticate = __webpack_require__(150);
+const beforeRequest = __webpack_require__(5672);
+const requestError = __webpack_require__(5777);
 
 function authenticationPlugin(octokit, options) {
   if (options.auth) {
@@ -15745,12 +15737,12 @@ function authenticationPlugin(octokit, options) {
 
 /***/ }),
 
-/***/ 4275:
+/***/ 5777:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationRequestError;
 
-const { RequestError } = __webpack_require__(6239);
+const { RequestError } = __webpack_require__(5494);
 
 function authenticationRequestError(state, error, options) {
   /* istanbul ignore next */
@@ -15807,14 +15799,14 @@ function authenticationRequestError(state, error, options) {
 
 /***/ }),
 
-/***/ 9733:
+/***/ 3537:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationBeforeRequest;
 
-const btoa = __webpack_require__(2358);
+const btoa = __webpack_require__(1371);
 
-const withAuthorizationPrefix = __webpack_require__(9603);
+const withAuthorizationPrefix = __webpack_require__(7707);
 
 function authenticationBeforeRequest(state, options) {
   if (typeof state.auth === "string") {
@@ -15867,19 +15859,19 @@ function authenticationBeforeRequest(state, options) {
 
 /***/ }),
 
-/***/ 4555:
+/***/ 5499:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationPlugin;
 
-const { createTokenAuth } = __webpack_require__(334);
-const { Deprecation } = __webpack_require__(8932);
-const once = __webpack_require__(1223);
+const { createTokenAuth } = __webpack_require__(1721);
+const { Deprecation } = __webpack_require__(7570);
+const once = __webpack_require__(6830);
 
-const beforeRequest = __webpack_require__(9733);
-const requestError = __webpack_require__(3217);
-const validate = __webpack_require__(8997);
-const withAuthorizationPrefix = __webpack_require__(9603);
+const beforeRequest = __webpack_require__(3537);
+const requestError = __webpack_require__(3837);
+const validate = __webpack_require__(3326);
+const withAuthorizationPrefix = __webpack_require__(7707);
 
 const deprecateAuthBasic = once((log, deprecation) => log.warn(deprecation));
 const deprecateAuthObject = once((log, deprecation) => log.warn(deprecation));
@@ -15950,12 +15942,12 @@ function authenticationPlugin(octokit, options) {
 
 /***/ }),
 
-/***/ 3217:
+/***/ 3837:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = authenticationRequestError;
 
-const { RequestError } = __webpack_require__(6239);
+const { RequestError } = __webpack_require__(5494);
 
 function authenticationRequestError(state, error, options) {
   if (!error.headers) throw error;
@@ -16018,7 +16010,7 @@ function authenticationRequestError(state, error, options) {
 
 /***/ }),
 
-/***/ 8997:
+/***/ 3326:
 /***/ ((module) => {
 
 module.exports = validateAuth;
@@ -16046,12 +16038,12 @@ function validateAuth(auth) {
 
 /***/ }),
 
-/***/ 9603:
+/***/ 7707:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = withAuthorizationPrefix;
 
-const atob = __webpack_require__(5224);
+const atob = __webpack_require__(9054);
 
 const REGEX_IS_BASIC_AUTH = /^[\w-]+:/;
 
@@ -16076,12 +16068,12 @@ function withAuthorizationPrefix(authorization) {
 
 /***/ }),
 
-/***/ 8579:
+/***/ 8462:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = paginatePlugin;
 
-const { paginateRest } = __webpack_require__(4193);
+const { paginateRest } = __webpack_require__(37);
 
 function paginatePlugin(octokit) {
   Object.assign(octokit, paginateRest(octokit));
@@ -16090,12 +16082,12 @@ function paginatePlugin(octokit) {
 
 /***/ }),
 
-/***/ 2657:
+/***/ 2043:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = octokitValidate;
 
-const validate = __webpack_require__(6132);
+const validate = __webpack_require__(1059);
 
 function octokitValidate(octokit) {
   octokit.hook.before("request", validate.bind(null, octokit));
@@ -16104,7 +16096,7 @@ function octokitValidate(octokit) {
 
 /***/ }),
 
-/***/ 6132:
+/***/ 1059:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -16112,9 +16104,9 @@ function octokitValidate(octokit) {
 
 module.exports = validate;
 
-const { RequestError } = __webpack_require__(6239);
-const get = __webpack_require__(9197);
-const set = __webpack_require__(1552);
+const { RequestError } = __webpack_require__(5494);
+const get = __webpack_require__(1003);
+const set = __webpack_require__(2612);
 
 function validate(octokit, options) {
   if (!options.request.validate) {
@@ -16263,7 +16255,7 @@ function validate(octokit, options) {
 
 /***/ }),
 
-/***/ 5224:
+/***/ 9054:
 /***/ ((module) => {
 
 module.exports = function atob(str) {
@@ -16273,12 +16265,12 @@ module.exports = function atob(str) {
 
 /***/ }),
 
-/***/ 3682:
+/***/ 2202:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var register = __webpack_require__(4670)
-var addHook = __webpack_require__(5549)
-var removeHook = __webpack_require__(6819)
+var register = __webpack_require__(9611)
+var addHook = __webpack_require__(9774)
+var removeHook = __webpack_require__(8132)
 
 // bind with array of arguments: https://stackoverflow.com/a/21792913
 var bind = Function.bind
@@ -16337,7 +16329,7 @@ module.exports.Collection = Hook.Collection
 
 /***/ }),
 
-/***/ 5549:
+/***/ 9774:
 /***/ ((module) => {
 
 module.exports = addHook
@@ -16390,7 +16382,7 @@ function addHook (state, kind, name, hook) {
 
 /***/ }),
 
-/***/ 4670:
+/***/ 9611:
 /***/ ((module) => {
 
 module.exports = register
@@ -16425,7 +16417,7 @@ function register (state, name, method, options) {
 
 /***/ }),
 
-/***/ 6819:
+/***/ 8132:
 /***/ ((module) => {
 
 module.exports = removeHook
@@ -16449,7 +16441,7 @@ function removeHook (state, name, method) {
 
 /***/ }),
 
-/***/ 2358:
+/***/ 1371:
 /***/ ((module) => {
 
 module.exports = function btoa(str) {
@@ -16459,15 +16451,15 @@ module.exports = function btoa(str) {
 
 /***/ }),
 
-/***/ 2746:
+/***/ 8378:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 const cp = __webpack_require__(3129);
-const parse = __webpack_require__(6855);
-const enoent = __webpack_require__(4101);
+const parse = __webpack_require__(5109);
+const enoent = __webpack_require__(484);
 
 function spawn(command, args, options) {
     // Parse the arguments
@@ -16506,7 +16498,7 @@ module.exports._enoent = enoent;
 
 /***/ }),
 
-/***/ 4101:
+/***/ 484:
 /***/ ((module) => {
 
 "use strict";
@@ -16573,18 +16565,18 @@ module.exports = {
 
 /***/ }),
 
-/***/ 6855:
+/***/ 5109:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 const path = __webpack_require__(5622);
-const niceTry = __webpack_require__(8560);
-const resolveCommand = __webpack_require__(7274);
-const escape = __webpack_require__(4274);
-const readShebang = __webpack_require__(1252);
-const semver = __webpack_require__(1129);
+const niceTry = __webpack_require__(3779);
+const resolveCommand = __webpack_require__(4248);
+const escape = __webpack_require__(648);
+const readShebang = __webpack_require__(5198);
+const semver = __webpack_require__(5545);
 
 const isWin = process.platform === 'win32';
 const isExecutableRegExp = /\.(?:com|exe)$/i;
@@ -16706,7 +16698,7 @@ module.exports = parse;
 
 /***/ }),
 
-/***/ 4274:
+/***/ 648:
 /***/ ((module) => {
 
 "use strict";
@@ -16759,14 +16751,14 @@ module.exports.argument = escapeArgument;
 
 /***/ }),
 
-/***/ 1252:
+/***/ 5198:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 const fs = __webpack_require__(5747);
-const shebangCommand = __webpack_require__(7032);
+const shebangCommand = __webpack_require__(1974);
 
 function readShebang(command) {
     // Read the first 150 bytes from the file
@@ -16799,15 +16791,15 @@ module.exports = readShebang;
 
 /***/ }),
 
-/***/ 7274:
+/***/ 4248:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 const path = __webpack_require__(5622);
-const which = __webpack_require__(4207);
-const pathKey = __webpack_require__(539)();
+const which = __webpack_require__(7389);
+const pathKey = __webpack_require__(9014)();
 
 function resolveCommandAttempt(parsed, withoutPathExt) {
     const cwd = process.cwd();
@@ -16854,7 +16846,7 @@ module.exports = resolveCommand;
 
 /***/ }),
 
-/***/ 1129:
+/***/ 5545:
 /***/ ((module, exports) => {
 
 exports = module.exports = SemVer
@@ -18344,7 +18336,7 @@ function coerce (version) {
 
 /***/ }),
 
-/***/ 8932:
+/***/ 7570:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -18372,10 +18364,10 @@ exports.Deprecation = Deprecation;
 
 /***/ }),
 
-/***/ 1205:
+/***/ 7030:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var once = __webpack_require__(1223);
+var once = __webpack_require__(6830);
 
 var noop = function() {};
 
@@ -18473,22 +18465,22 @@ module.exports = eos;
 
 /***/ }),
 
-/***/ 5447:
+/***/ 4561:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 const path = __webpack_require__(5622);
 const childProcess = __webpack_require__(3129);
-const crossSpawn = __webpack_require__(2746);
-const stripEof = __webpack_require__(5515);
-const npmRunPath = __webpack_require__(502);
-const isStream = __webpack_require__(1554);
-const _getStream = __webpack_require__(1766);
-const pFinally = __webpack_require__(1330);
-const onExit = __webpack_require__(4931);
-const errname = __webpack_require__(4689);
-const stdio = __webpack_require__(166);
+const crossSpawn = __webpack_require__(8378);
+const stripEof = __webpack_require__(3509);
+const npmRunPath = __webpack_require__(6732);
+const isStream = __webpack_require__(683);
+const _getStream = __webpack_require__(6544);
+const pFinally = __webpack_require__(9623);
+const onExit = __webpack_require__(6878);
+const errname = __webpack_require__(5156);
+const stdio = __webpack_require__(6917);
 
 const TEN_MEGABYTES = 1000 * 1000 * 10;
 
@@ -18842,7 +18834,7 @@ module.exports.shellSync = (cmd, opts) => handleShell(module.exports.sync, cmd, 
 
 /***/ }),
 
-/***/ 4689:
+/***/ 5156:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -18889,7 +18881,7 @@ function errname(uv, code) {
 
 /***/ }),
 
-/***/ 166:
+/***/ 6917:
 /***/ ((module) => {
 
 "use strict";
@@ -18938,7 +18930,7 @@ module.exports = opts => {
 
 /***/ }),
 
-/***/ 1585:
+/***/ 6475:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -18997,13 +18989,13 @@ module.exports = options => {
 
 /***/ }),
 
-/***/ 1766:
+/***/ 6544:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
-const pump = __webpack_require__(8341);
-const bufferStream = __webpack_require__(1585);
+const pump = __webpack_require__(551);
+const bufferStream = __webpack_require__(6475);
 
 class MaxBufferError extends Error {
 	constructor() {
@@ -19055,7 +19047,7 @@ module.exports.MaxBufferError = MaxBufferError;
 
 /***/ }),
 
-/***/ 3287:
+/***/ 3942:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -19101,7 +19093,7 @@ exports.isPlainObject = isPlainObject;
 
 /***/ }),
 
-/***/ 1554:
+/***/ 683:
 /***/ ((module) => {
 
 "use strict";
@@ -19130,15 +19122,15 @@ isStream.transform = function (stream) {
 
 /***/ }),
 
-/***/ 7126:
+/***/ 6606:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var fs = __webpack_require__(5747)
 var core
 if (process.platform === 'win32' || global.TESTING_WINDOWS) {
-  core = __webpack_require__(2001)
+  core = __webpack_require__(711)
 } else {
-  core = __webpack_require__(9728)
+  core = __webpack_require__(4275)
 }
 
 module.exports = isexe
@@ -19194,7 +19186,7 @@ function sync (path, options) {
 
 /***/ }),
 
-/***/ 9728:
+/***/ 4275:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = isexe
@@ -19242,7 +19234,7 @@ function checkMode (stat, options) {
 
 /***/ }),
 
-/***/ 2001:
+/***/ 711:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = isexe
@@ -19291,7 +19283,7 @@ function sync (path, options) {
 
 /***/ }),
 
-/***/ 9197:
+/***/ 1003:
 /***/ ((module) => {
 
 /**
@@ -20229,7 +20221,7 @@ module.exports = get;
 
 /***/ }),
 
-/***/ 1552:
+/***/ 2612:
 /***/ ((module) => {
 
 /**
@@ -21226,7 +21218,7 @@ module.exports = set;
 
 /***/ }),
 
-/***/ 8216:
+/***/ 4344:
 /***/ ((module) => {
 
 /**
@@ -22129,7 +22121,7 @@ module.exports = uniq;
 
 /***/ }),
 
-/***/ 7493:
+/***/ 4986:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -22173,7 +22165,7 @@ module.exports.default = macosRelease;
 
 /***/ }),
 
-/***/ 8560:
+/***/ 3779:
 /***/ ((module) => {
 
 "use strict";
@@ -22192,7 +22184,7 @@ module.exports = function(fn) {
 
 /***/ }),
 
-/***/ 467:
+/***/ 27:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
@@ -22357,7 +22349,7 @@ FetchError.prototype.name = 'FetchError';
 
 let convert;
 try {
-	convert = __webpack_require__(2877).convert;
+	convert = __webpack_require__(8878).convert;
 } catch (e) {}
 
 const INTERNALS = Symbol('Body internals');
@@ -23849,13 +23841,13 @@ exports.FetchError = FetchError;
 
 /***/ }),
 
-/***/ 502:
+/***/ 6732:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 const path = __webpack_require__(5622);
-const pathKey = __webpack_require__(539);
+const pathKey = __webpack_require__(9014);
 
 module.exports = opts => {
 	opts = Object.assign({
@@ -23896,26 +23888,26 @@ module.exports.env = opts => {
 
 /***/ }),
 
-/***/ 2072:
+/***/ 8768:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = paginationMethodsPlugin
 
 function paginationMethodsPlugin (octokit) {
-  octokit.getFirstPage = __webpack_require__(9555).bind(null, octokit)
-  octokit.getLastPage = __webpack_require__(2203).bind(null, octokit)
-  octokit.getNextPage = __webpack_require__(6655).bind(null, octokit)
-  octokit.getPreviousPage = __webpack_require__(3032).bind(null, octokit)
-  octokit.hasFirstPage = __webpack_require__(9631)
-  octokit.hasLastPage = __webpack_require__(4286)
-  octokit.hasNextPage = __webpack_require__(500)
-  octokit.hasPreviousPage = __webpack_require__(5996)
+  octokit.getFirstPage = __webpack_require__(1848).bind(null, octokit)
+  octokit.getLastPage = __webpack_require__(1457).bind(null, octokit)
+  octokit.getNextPage = __webpack_require__(2095).bind(null, octokit)
+  octokit.getPreviousPage = __webpack_require__(9342).bind(null, octokit)
+  octokit.hasFirstPage = __webpack_require__(677)
+  octokit.hasLastPage = __webpack_require__(5719)
+  octokit.hasNextPage = __webpack_require__(2309)
+  octokit.hasPreviousPage = __webpack_require__(3756)
 }
 
 
 /***/ }),
 
-/***/ 191:
+/***/ 7969:
 /***/ ((module) => {
 
 module.exports = deprecate
@@ -23934,12 +23926,12 @@ function deprecate (message) {
 
 /***/ }),
 
-/***/ 9555:
+/***/ 1848:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = getFirstPage
 
-const getPage = __webpack_require__(8604)
+const getPage = __webpack_require__(9566)
 
 function getFirstPage (octokit, link, headers) {
   return getPage(octokit, link, 'first', headers)
@@ -23948,12 +23940,12 @@ function getFirstPage (octokit, link, headers) {
 
 /***/ }),
 
-/***/ 2203:
+/***/ 1457:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = getLastPage
 
-const getPage = __webpack_require__(8604)
+const getPage = __webpack_require__(9566)
 
 function getLastPage (octokit, link, headers) {
   return getPage(octokit, link, 'last', headers)
@@ -23962,12 +23954,12 @@ function getLastPage (octokit, link, headers) {
 
 /***/ }),
 
-/***/ 6655:
+/***/ 2095:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = getNextPage
 
-const getPage = __webpack_require__(8604)
+const getPage = __webpack_require__(9566)
 
 function getNextPage (octokit, link, headers) {
   return getPage(octokit, link, 'next', headers)
@@ -23976,7 +23968,7 @@ function getNextPage (octokit, link, headers) {
 
 /***/ }),
 
-/***/ 7889:
+/***/ 8014:
 /***/ ((module) => {
 
 module.exports = getPageLinks
@@ -23998,14 +23990,14 @@ function getPageLinks (link) {
 
 /***/ }),
 
-/***/ 8604:
+/***/ 9566:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = getPage
 
-const deprecate = __webpack_require__(191)
-const getPageLinks = __webpack_require__(7889)
-const HttpError = __webpack_require__(6058)
+const deprecate = __webpack_require__(7969)
+const getPageLinks = __webpack_require__(8014)
+const HttpError = __webpack_require__(6661)
 
 function getPage (octokit, link, which, headers) {
   deprecate(`octokit.get${which.charAt(0).toUpperCase() + which.slice(1)}Page() – You can use octokit.paginate or async iterators instead: https://github.com/octokit/rest.js#pagination.`)
@@ -24043,12 +24035,12 @@ function applyAcceptHeader (res, headers) {
 
 /***/ }),
 
-/***/ 3032:
+/***/ 9342:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = getPreviousPage
 
-const getPage = __webpack_require__(8604)
+const getPage = __webpack_require__(9566)
 
 function getPreviousPage (octokit, link, headers) {
   return getPage(octokit, link, 'prev', headers)
@@ -24057,13 +24049,13 @@ function getPreviousPage (octokit, link, headers) {
 
 /***/ }),
 
-/***/ 9631:
+/***/ 677:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = hasFirstPage
 
-const deprecate = __webpack_require__(191)
-const getPageLinks = __webpack_require__(7889)
+const deprecate = __webpack_require__(7969)
+const getPageLinks = __webpack_require__(8014)
 
 function hasFirstPage (link) {
   deprecate(`octokit.hasFirstPage() – You can use octokit.paginate or async iterators instead: https://github.com/octokit/rest.js#pagination.`)
@@ -24073,13 +24065,13 @@ function hasFirstPage (link) {
 
 /***/ }),
 
-/***/ 4286:
+/***/ 5719:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = hasLastPage
 
-const deprecate = __webpack_require__(191)
-const getPageLinks = __webpack_require__(7889)
+const deprecate = __webpack_require__(7969)
+const getPageLinks = __webpack_require__(8014)
 
 function hasLastPage (link) {
   deprecate(`octokit.hasLastPage() – You can use octokit.paginate or async iterators instead: https://github.com/octokit/rest.js#pagination.`)
@@ -24089,13 +24081,13 @@ function hasLastPage (link) {
 
 /***/ }),
 
-/***/ 500:
+/***/ 2309:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = hasNextPage
 
-const deprecate = __webpack_require__(191)
-const getPageLinks = __webpack_require__(7889)
+const deprecate = __webpack_require__(7969)
+const getPageLinks = __webpack_require__(8014)
 
 function hasNextPage (link) {
   deprecate(`octokit.hasNextPage() – You can use octokit.paginate or async iterators instead: https://github.com/octokit/rest.js#pagination.`)
@@ -24105,13 +24097,13 @@ function hasNextPage (link) {
 
 /***/ }),
 
-/***/ 5996:
+/***/ 3756:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = hasPreviousPage
 
-const deprecate = __webpack_require__(191)
-const getPageLinks = __webpack_require__(7889)
+const deprecate = __webpack_require__(7969)
+const getPageLinks = __webpack_require__(8014)
 
 function hasPreviousPage (link) {
   deprecate(`octokit.hasPreviousPage() – You can use octokit.paginate or async iterators instead: https://github.com/octokit/rest.js#pagination.`)
@@ -24121,7 +24113,7 @@ function hasPreviousPage (link) {
 
 /***/ }),
 
-/***/ 6058:
+/***/ 6661:
 /***/ ((module) => {
 
 module.exports = class HttpError extends Error {
@@ -24143,10 +24135,10 @@ module.exports = class HttpError extends Error {
 
 /***/ }),
 
-/***/ 1223:
+/***/ 6830:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var wrappy = __webpack_require__(2940)
+var wrappy = __webpack_require__(6444)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -24192,14 +24184,14 @@ function onceStrict (fn) {
 
 /***/ }),
 
-/***/ 4824:
+/***/ 1778:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 const os = __webpack_require__(2087);
-const macosRelease = __webpack_require__(7493);
-const winRelease = __webpack_require__(3515);
+const macosRelease = __webpack_require__(4986);
+const winRelease = __webpack_require__(3226);
 
 const osName = (platform, release) => {
 	if (!platform && release) {
@@ -24246,7 +24238,7 @@ module.exports = osName;
 
 /***/ }),
 
-/***/ 1330:
+/***/ 9623:
 /***/ ((module) => {
 
 "use strict";
@@ -24269,7 +24261,7 @@ module.exports = (promise, onFinally) => {
 
 /***/ }),
 
-/***/ 539:
+/***/ 9014:
 /***/ ((module) => {
 
 "use strict";
@@ -24290,11 +24282,11 @@ module.exports = opts => {
 
 /***/ }),
 
-/***/ 8341:
+/***/ 551:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var once = __webpack_require__(1223)
-var eos = __webpack_require__(1205)
+var once = __webpack_require__(6830)
+var eos = __webpack_require__(7030)
 var fs = __webpack_require__(5747) // we only need fs to get the ReadStream and WriteStream prototypes
 
 var noop = function () {}
@@ -24379,12 +24371,12 @@ module.exports = pump
 
 /***/ }),
 
-/***/ 7032:
+/***/ 1974:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
-var shebangRegex = __webpack_require__(2638);
+var shebangRegex = __webpack_require__(138);
 
 module.exports = function (str) {
 	var match = str.match(shebangRegex);
@@ -24406,7 +24398,7 @@ module.exports = function (str) {
 
 /***/ }),
 
-/***/ 2638:
+/***/ 138:
 /***/ ((module) => {
 
 "use strict";
@@ -24416,14 +24408,14 @@ module.exports = /^#!.*/;
 
 /***/ }),
 
-/***/ 4931:
+/***/ 6878:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Note: since nyc uses this module to output coverage, any lines
 // that are in the direct sync flow of nyc's outputCoverage are
 // ignored, since we can never get coverage for them.
 var assert = __webpack_require__(2357)
-var signals = __webpack_require__(3710)
+var signals = __webpack_require__(3317)
 var isWin = /^win/i.test(process.platform)
 
 var EE = __webpack_require__(8614)
@@ -24586,7 +24578,7 @@ function processEmit (ev, arg) {
 
 /***/ }),
 
-/***/ 3710:
+/***/ 3317:
 /***/ ((module) => {
 
 // This is not the set of all possible signals.
@@ -24646,7 +24638,7 @@ if (process.platform === 'linux') {
 
 /***/ }),
 
-/***/ 5515:
+/***/ 3509:
 /***/ ((module) => {
 
 "use strict";
@@ -24669,15 +24661,15 @@ module.exports = function (x) {
 
 /***/ }),
 
-/***/ 4294:
+/***/ 5606:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__(4219);
+module.exports = __webpack_require__(7724);
 
 
 /***/ }),
 
-/***/ 4219:
+/***/ 7724:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -24949,7 +24941,7 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 5030:
+/***/ 7870:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -24975,7 +24967,7 @@ exports.getUserAgent = getUserAgent;
 
 /***/ }),
 
-/***/ 4207:
+/***/ 7389:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = which
@@ -24987,7 +24979,7 @@ var isWindows = process.platform === 'win32' ||
 
 var path = __webpack_require__(5622)
 var COLON = isWindows ? ';' : ':'
-var isexe = __webpack_require__(7126)
+var isexe = __webpack_require__(6606)
 
 function getNotFoundError (cmd) {
   var er = new Error('not found: ' + cmd)
@@ -25117,13 +25109,13 @@ function whichSync (cmd, opt) {
 
 /***/ }),
 
-/***/ 3515:
+/***/ 3226:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 const os = __webpack_require__(2087);
-const execa = __webpack_require__(5447);
+const execa = __webpack_require__(4561);
 
 // Reference: https://www.gaijin.at/en/lstwinver.php
 const names = new Map([
@@ -25177,7 +25169,7 @@ module.exports = windowsRelease;
 
 /***/ }),
 
-/***/ 2940:
+/***/ 6444:
 /***/ ((module) => {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -25217,7 +25209,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 399:
+/***/ 2468:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -25251,10 +25243,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__webpack_require__(2186));
-const github = __importStar(__webpack_require__(5438));
-const issue_details_1 = __webpack_require__(2818);
-const tasks_1 = __webpack_require__(7810);
+const core = __importStar(__webpack_require__(1449));
+const github = __importStar(__webpack_require__(7871));
+const issue_details_1 = __webpack_require__(5243);
+const tasks_1 = __webpack_require__(8682);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -25308,7 +25300,307 @@ run();
 
 /***/ }),
 
-/***/ 2877:
+/***/ 8682:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__webpack_require__(4679), exports);
+
+
+/***/ }),
+
+/***/ 4679:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__webpack_require__(339), exports);
+
+
+/***/ }),
+
+/***/ 339:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.validateCommitHash = void 0;
+const github = __importStar(__webpack_require__(7871));
+const issue_add_labels_1 = __webpack_require__(4548);
+const issue_remove_labels_1 = __webpack_require__(4968);
+function validateCommitHash(client, config, issue) {
+    const label = config.validate_commit_hash.label;
+    if (!label) {
+        log(`Config file doesn't contain a label at validate_commit_hash.label`);
+        return;
+    }
+    const commitHash = extractCommitHash(config, issue);
+    if (!commitHash) {
+        issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+        return;
+    }
+    const commit = findCommit(client, config, commitHash);
+    if (!commit) {
+        log(`Commit was not found or didn't match config.`);
+        issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+        return;
+    }
+    issue_add_labels_1.issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+}
+exports.validateCommitHash = validateCommitHash;
+function extractCommitHash(config, issue) {
+    const hashOpeningTag = config.validate_commit_hash.hash_opening_tag;
+    const hashClosingTag = config.validate_commit_hash.hash_closing_tag;
+    const hashRegex = /^\s*?(\w{7,})\s*$/m;
+    const hashStartPosition = issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
+    if (hashStartPosition === -1) {
+        log(`Hash opening tag (${hashOpeningTag}) could not be found`);
+        return;
+    }
+    const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
+    if (hashStartPosition === -1) {
+        log(`Hash closing tag (${hashClosingTag}) could not be found`);
+        return;
+    }
+    const hashTagContent = issue.body.slice(hashStartPosition, hashEndPosition);
+    const hashMatch = hashTagContent.match(hashRegex);
+    if (!hashMatch || !hashMatch[1]) {
+        log(`Couldn't extract valid commit hash from issue body.`);
+        return;
+    }
+    return hashMatch[1];
+}
+function findCommit(client, config, commitHash) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const userParams = config.validate_commit_hash.commits_api_params;
+        let params = {
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo
+        };
+        if (userParams.per_page) {
+            params.per_page = userParams.per_page;
+        }
+        const response = yield client.repos.listCommits(params);
+        for (const commit of response.data) {
+            if (commit.sha.indexOf(commitHash) === 0) {
+                return commit;
+            }
+        }
+        return null;
+    });
+}
+function log(...args) {
+    console.log('[validateCommitHash]', ...args);
+}
+
+
+/***/ }),
+
+/***/ 4548:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.issueAddLabels = void 0;
+const github = __importStar(__webpack_require__(7871));
+function issueAddLabels(client, issueId, labels) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield client.issues.addLabels({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            issue_number: issueId,
+            labels
+        });
+    });
+}
+exports.issueAddLabels = issueAddLabels;
+
+
+/***/ }),
+
+/***/ 5243:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getIssueDetails = void 0;
+const github = __importStar(__webpack_require__(7871));
+function getIssueDetails(client, issueId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return (yield client.issues.get({
+            issue_number: issueId,
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo
+        })).data;
+    });
+}
+exports.getIssueDetails = getIssueDetails;
+
+
+/***/ }),
+
+/***/ 4968:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.issueRemoveLabel = void 0;
+const github = __importStar(__webpack_require__(7871));
+function issueRemoveLabel(client, issueId, name) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield client.issues.removeLabel({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            issue_number: issueId,
+            name
+        });
+    });
+}
+exports.issueRemoveLabel = issueRemoveLabel;
+
+
+/***/ }),
+
+/***/ 8878:
 /***/ ((module) => {
 
 module.exports = eval("require")("encoding");
@@ -25316,19 +25608,11 @@ module.exports = eval("require")("encoding");
 
 /***/ }),
 
-/***/ 7810:
+/***/ 9674:
 /***/ ((module) => {
 
-module.exports = eval("require")("~/tasks");
-
-
-/***/ }),
-
-/***/ 2818:
-/***/ ((module) => {
-
-module.exports = eval("require")("~/utils/issue-details");
-
+"use strict";
+module.exports = JSON.parse("{\"_from\":\"@octokit/rest@^16.36.0\",\"_id\":\"@octokit/rest@16.43.2\",\"_inBundle\":false,\"_integrity\":\"sha512-ngDBevLbBTFfrHZeiS7SAMAZ6ssuVmXuya+F/7RaVvlysgGa1JKJkKWY+jV6TCJYcW0OALfJ7nTIGXcBXzycfQ==\",\"_location\":\"/@octokit/rest\",\"_phantomChildren\":{\"deprecation\":\"2.3.1\",\"once\":\"1.4.0\",\"os-name\":\"3.1.0\"},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"@octokit/rest@^16.36.0\",\"name\":\"@octokit/rest\",\"escapedName\":\"@octokit%2frest\",\"scope\":\"@octokit\",\"rawSpec\":\"^16.36.0\",\"saveSpec\":null,\"fetchSpec\":\"^16.36.0\"},\"_requiredBy\":[\"/\",\"/@actions/github\"],\"_resolved\":\"https://registry.npmjs.org/@octokit/rest/-/rest-16.43.2.tgz\",\"_shasum\":\"c53426f1e1d1044dee967023e3279c50993dd91b\",\"_spec\":\"@octokit/rest@^16.36.0\",\"_where\":\"/home/rafael/coding/github/olive-issue-triage-bot\",\"author\":{\"name\":\"Gregor Martynus\",\"url\":\"https://github.com/gr2m\"},\"bugs\":{\"url\":\"https://github.com/octokit/rest.js/issues\"},\"bundleDependencies\":false,\"bundlesize\":[{\"path\":\"./dist/octokit-rest.min.js.gz\",\"maxSize\":\"33 kB\"}],\"contributors\":[{\"name\":\"Mike de Boer\",\"email\":\"info@mikedeboer.nl\"},{\"name\":\"Fabian Jakobs\",\"email\":\"fabian@c9.io\"},{\"name\":\"Joe Gallo\",\"email\":\"joe@brassafrax.com\"},{\"name\":\"Gregor Martynus\",\"url\":\"https://github.com/gr2m\"}],\"dependencies\":{\"@octokit/auth-token\":\"^2.4.0\",\"@octokit/plugin-paginate-rest\":\"^1.1.1\",\"@octokit/plugin-request-log\":\"^1.0.0\",\"@octokit/plugin-rest-endpoint-methods\":\"2.4.0\",\"@octokit/request\":\"^5.2.0\",\"@octokit/request-error\":\"^1.0.2\",\"atob-lite\":\"^2.0.0\",\"before-after-hook\":\"^2.0.0\",\"btoa-lite\":\"^1.0.0\",\"deprecation\":\"^2.0.0\",\"lodash.get\":\"^4.4.2\",\"lodash.set\":\"^4.3.2\",\"lodash.uniq\":\"^4.5.0\",\"octokit-pagination-methods\":\"^1.1.0\",\"once\":\"^1.4.0\",\"universal-user-agent\":\"^4.0.0\"},\"deprecated\":false,\"description\":\"GitHub REST API client for Node.js\",\"devDependencies\":{\"@gimenete/type-writer\":\"^0.1.3\",\"@octokit/auth\":\"^1.1.1\",\"@octokit/fixtures-server\":\"^5.0.6\",\"@octokit/graphql\":\"^4.2.0\",\"@types/node\":\"^13.1.0\",\"bundlesize\":\"^0.18.0\",\"chai\":\"^4.1.2\",\"compression-webpack-plugin\":\"^3.1.0\",\"cypress\":\"^4.0.0\",\"glob\":\"^7.1.2\",\"http-proxy-agent\":\"^4.0.0\",\"lodash.camelcase\":\"^4.3.0\",\"lodash.merge\":\"^4.6.1\",\"lodash.upperfirst\":\"^4.3.1\",\"lolex\":\"^6.0.0\",\"mkdirp\":\"^1.0.0\",\"mocha\":\"^7.0.1\",\"mustache\":\"^4.0.0\",\"nock\":\"^11.3.3\",\"npm-run-all\":\"^4.1.2\",\"nyc\":\"^15.0.0\",\"prettier\":\"^1.14.2\",\"proxy\":\"^1.0.0\",\"semantic-release\":\"^17.0.0\",\"sinon\":\"^8.0.0\",\"sinon-chai\":\"^3.0.0\",\"sort-keys\":\"^4.0.0\",\"string-to-arraybuffer\":\"^1.0.0\",\"string-to-jsdoc-comment\":\"^1.0.0\",\"typescript\":\"^3.3.1\",\"webpack\":\"^4.0.0\",\"webpack-bundle-analyzer\":\"^3.0.0\",\"webpack-cli\":\"^3.0.0\"},\"files\":[\"index.js\",\"index.d.ts\",\"lib\",\"plugins\"],\"homepage\":\"https://github.com/octokit/rest.js#readme\",\"keywords\":[\"octokit\",\"github\",\"rest\",\"api-client\"],\"license\":\"MIT\",\"name\":\"@octokit/rest\",\"nyc\":{\"ignore\":[\"test\"]},\"publishConfig\":{\"access\":\"public\"},\"release\":{\"publish\":[\"@semantic-release/npm\",{\"path\":\"@semantic-release/github\",\"assets\":[\"dist/*\",\"!dist/*.map.gz\"]}]},\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/octokit/rest.js.git\"},\"scripts\":{\"build\":\"npm-run-all build:*\",\"build:browser\":\"npm-run-all build:browser:*\",\"build:browser:development\":\"webpack --mode development --entry . --output-library=Octokit --output=./dist/octokit-rest.js --profile --json > dist/bundle-stats.json\",\"build:browser:production\":\"webpack --mode production --entry . --plugin=compression-webpack-plugin --output-library=Octokit --output-path=./dist --output-filename=octokit-rest.min.js --devtool source-map\",\"build:ts\":\"npm run -s update-endpoints:typescript\",\"coverage\":\"nyc report --reporter=html && open coverage/index.html\",\"generate-bundle-report\":\"webpack-bundle-analyzer dist/bundle-stats.json --mode=static --no-open --report dist/bundle-report.html\",\"lint\":\"prettier --check '{lib,plugins,scripts,test}/**/*.{js,json,ts}' 'docs/*.{js,json}' 'docs/src/**/*' index.js README.md package.json\",\"lint:fix\":\"prettier --write '{lib,plugins,scripts,test}/**/*.{js,json,ts}' 'docs/*.{js,json}' 'docs/src/**/*' index.js README.md package.json\",\"postvalidate:ts\":\"tsc --noEmit --target es6 test/typescript-validate.ts\",\"prebuild:browser\":\"mkdirp dist/\",\"pretest\":\"npm run -s lint\",\"prevalidate:ts\":\"npm run -s build:ts\",\"start-fixtures-server\":\"octokit-fixtures-server\",\"test\":\"nyc mocha test/mocha-node-setup.js \\\"test/*/**/*-test.js\\\"\",\"test:browser\":\"cypress run --browser chrome\",\"update-endpoints\":\"npm-run-all update-endpoints:*\",\"update-endpoints:fetch-json\":\"node scripts/update-endpoints/fetch-json\",\"update-endpoints:typescript\":\"node scripts/update-endpoints/typescript\",\"validate:ts\":\"tsc --target es6 --noImplicitAny index.d.ts\"},\"types\":\"index.d.ts\",\"version\":\"16.43.2\"}");
 
 /***/ }),
 
@@ -25482,7 +25766,7 @@ module.exports = require("zlib");
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(399);
+/******/ 	return __webpack_require__(2468);
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
