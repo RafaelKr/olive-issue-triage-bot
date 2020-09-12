@@ -2962,6 +2962,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
+const issue_details_1 = __webpack_require__(858);
+const tasks_1 = __webpack_require__(975);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -2986,59 +2988,10 @@ function run() {
 }
 function processIssue(client, config, issueId) {
     return __awaiter(this, void 0, void 0, function* () {
-        const issue = yield getIssue(client, issueId);
-        const commitHash = extractCommitHash(issue);
-        console.log({ commitHash });
-    });
-}
-function extractCommitHash(issue) {
-    const hashOpeningTag = '<!-- HASH -->';
-    const hashClosingTag = '<!-- /HASH -->';
-    const hashRegex = /^\s*?(\w+)\s*$/m;
-    const hashStartPosition = issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
-    if (hashStartPosition === -1) {
-        console.log(`Hash opening tag (${hashOpeningTag}) could not be found`);
-        return;
-    }
-    const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
-    if (hashStartPosition === -1) {
-        console.log(`Hash closing tag (${hashClosingTag}) could not be found`);
-        return;
-    }
-    const hashTagContent = issue.body.slice(hashStartPosition, hashEndPosition);
-    const hashMatch = hashTagContent.match(hashRegex);
-    if (!hashMatch || !hashMatch[1]) {
-        return;
-    }
-    return hashMatch[1];
-}
-function writeComment(client, issueId, body) {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield client.issues.createComment({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            issue_number: issueId,
-            body: body
-        });
-    });
-}
-function addLabels(client, issueId, labels) {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield client.issues.addLabels({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            issue_number: issueId,
-            labels
-        });
-    });
-}
-function getIssue(client, issueId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return (yield client.issues.get({
-            issue_number: issueId,
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo
-        })).data;
+        const issue = yield issue_details_1.getIssueDetails(client, issueId);
+        if (config.validate_commit_hash) {
+            tasks_1.validateCommitHash(client, config, issue);
+        }
     });
 }
 function getConfig(client, configPath) {
@@ -23642,6 +23595,14 @@ module.exports = __webpack_require__(141);
 
 /***/ }),
 
+/***/ 858:
+/***/ (function() {
+
+eval("require")("~/utils/issue-details");
+
+
+/***/ }),
+
 /***/ 863:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -25497,6 +25458,14 @@ module.exports = options => {
 
 	return stream;
 };
+
+
+/***/ }),
+
+/***/ 975:
+/***/ (function() {
+
+eval("require")("~/tasks");
 
 
 /***/ })

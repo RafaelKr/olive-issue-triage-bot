@@ -1,23 +1,9 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import {Octokit} from '@octokit/rest';
 
-type Issue = Octokit.IssuesGetResponse;
-
-type Args = {
-  repoToken: string;
-  configPath: string;
-};
-
-type TriageBotConfig = {
-  labels: Array<{
-    label: string;
-    globs: Array<string>;
-    comment?: string;
-  }>;
-  comment?: string;
-  no_label_comment?: string;
-};
+import {Issue, TriageBotConfig, Args} from '~/models';
+import {getIssueDetails} from '~/utils/issue-details';
+import {validateCommitHash} from '~/tasks';
 
 async function run() {
   try {
@@ -51,79 +37,11 @@ async function processIssue(
   config: TriageBotConfig,
   issueId: number
 ) {
-  const issue: Issue = await getIssue(client, issueId);
-  const commitHash = extractCommitHash(issue);
+  const issue: Issue = await getIssueDetails(client, issueId);
 
-  console.log({commitHash});
-}
-
-function extractCommitHash(issue: Issue) {
-  const hashOpeningTag = '<!-- HASH -->';
-  const hashClosingTag = '<!-- /HASH -->';
-  const hashRegex = /^\s*?(\w+)\s*$/m;
-
-  const hashStartPosition =
-    issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
-
-  if (hashStartPosition === -1) {
-    console.log(`Hash opening tag (${hashOpeningTag}) could not be found`);
-    return;
+  if (config.validate_commit_hash) {
+    validateCommitHash(client, config, issue);
   }
-
-  const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
-
-  if (hashStartPosition === -1) {
-    console.log(`Hash closing tag (${hashClosingTag}) could not be found`);
-    return;
-  }
-
-  const hashTagContent = issue.body.slice(hashStartPosition, hashEndPosition);
-  const hashMatch = hashTagContent.match(hashRegex);
-
-  if (!hashMatch || !hashMatch[1]) {
-    return;
-  }
-
-  return hashMatch[1];
-}
-
-async function writeComment(
-  client: github.GitHub,
-  issueId: number,
-  body: string
-) {
-  await client.issues.createComment({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    issue_number: issueId,
-    body: body
-  });
-}
-
-async function addLabels(
-  client: github.GitHub,
-  issueId: number,
-  labels: Array<string>
-) {
-  await client.issues.addLabels({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    issue_number: issueId,
-    labels
-  });
-}
-
-async function getIssue(
-  client: github.GitHub,
-  issueId: number
-): Promise<Issue> {
-  return (
-    await client.issues.get({
-      issue_number: issueId,
-      owner: github.context.repo.owner,
-      repo: github.context.repo.repo
-    })
-  ).data;
 }
 
 async function getConfig(
