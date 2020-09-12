@@ -45409,7 +45409,7 @@ function validateCommitHash(client, config, issue) {
             yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
             return;
         }
-        const commit = yield findCommit(client, config, commitHash);
+        const commit = yield findCommit(client, config, commitHash, new Date(issue.created_at));
         if (!commit) {
             log(`Commit was not found or didn't match config.`);
             yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
@@ -45441,7 +45441,7 @@ function extractCommitHash(config, issue) {
     }
     return hashMatch[1];
 }
-function findCommit(client, config, commitHash) {
+function findCommit(client, config, commitHash, issueDate = new Date()) {
     return __awaiter(this, void 0, void 0, function* () {
         const userParams = config.validate_commit_hash.commits_api_params;
         let params = {
@@ -45453,7 +45453,7 @@ function findCommit(client, config, commitHash) {
         }
         if (typeof userParams.since_in_days === 'number') {
             // subtract days from now. use start of date.
-            const date = date_fns_1.startOfDay(date_fns_1.subDays(new Date(), userParams.since_in_days));
+            const date = date_fns_1.startOfDay(date_fns_1.subDays(issueDate, userParams.since_in_days));
             params.since = date.toISOString();
         }
         const response = yield client.repos.listCommits(params);

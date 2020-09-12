@@ -26,7 +26,7 @@ export async function validateCommitHash(
     return;
   }
 
-  const commit = await findCommit(client, config, commitHash);
+  const commit = await findCommit(client, config, commitHash, new Date(issue.created_at));
 
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
@@ -74,7 +74,8 @@ function extractCommitHash(
 async function findCommit(
   client: github.GitHub,
   config: TriageBotConfig,
-  commitHash: string
+  commitHash: string,
+  issueDate: Date = new Date(),
 ) {
   const userParams = config.validate_commit_hash.commits_api_params;
   let params: Octokit.RequestOptions & Octokit.ReposListCommitsParams = {
@@ -88,7 +89,7 @@ async function findCommit(
 
   if (typeof userParams.since_in_days === 'number') {
     // subtract days from now. use start of date.
-    const date = startOfDay(subDays(new Date(), userParams.since_in_days));
+    const date = startOfDay(subDays(issueDate, userParams.since_in_days));
     params.since = date.toISOString();
   }
 
