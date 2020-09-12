@@ -26,9 +26,7 @@ export async function validateCommitHash(
     return;
   }
 
-  const commit = findCommit(client, config, commitHash);
-
-  console.log({ commit })
+  const commit = await findCommit(client, config, commitHash);
 
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
