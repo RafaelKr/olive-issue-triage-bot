@@ -15,7 +15,7 @@ on:
     types: [opened]
 
 jobs:
-  stale:
+  triage:
     runs-on: ubuntu-latest
     steps:
     - uses: DeMoorJasper/triage-bot@master

@@ -1,5 +1,5 @@
 {
-  "name": "stale-action",
+  "name": "olive-issue-triage",
   "version": "1.0.0",
   "private": true,
   "description": "Marks old issues and PRs as stale",
@@ -18,7 +18,7 @@
   "keywords": [
     "actions",
     "node",
-    "stale"
+    "triage"
   ],
   "author": "GitHub",
   "license": "MIT",
