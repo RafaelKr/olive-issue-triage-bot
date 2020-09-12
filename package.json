@@ -5,12 +5,11 @@
   "description": "Marks old issues and PRs as stale",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "test": "jest",
-    "dist": "npm run build && ncc build --source-map lib/index.js -o dist"
+    "dist": "ncc build ./src/main.ts --source-map -C"
   },
   "repository": {
     "type": "git",
@@ -28,14 +27,13 @@
     "@actions/github": "^2.0.1",
     "@octokit/rest": "^16.36.0",
     "matcher": "^2.1.0",
-    "module-alias": "^2.2.2",
     "semver": "^6.1.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/node": "^12.6.8",
     "@types/semver": "^6.0.0",
-    "@zeit/ncc": "^0.21.0",
+    "@vercel/ncc": "^0.24.0",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",
