@@ -45410,6 +45410,7 @@ function validateCommitHash(client, config, issue) {
             return;
         }
         const commit = findCommit(client, config, commitHash);
+        console.log({ commit });
         if (!commit) {
             log(`Commit was not found or didn't match config.`);
             yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
@@ -45457,10 +45458,8 @@ function findCommit(client, config, commitHash) {
             params.since = date.toISOString();
         }
         const response = yield client.repos.listCommits(params);
-        console.log({ params, response });
         for (const commit of response.data) {
             if (commit.sha.indexOf(commitHash) === 0) {
-                console.log({ commit, commitHash });
                 return commit;
             }
         }
@@ -45613,6 +45612,12 @@ exports.issueRemoveLabel = void 0;
 const github = __importStar(__webpack_require__(7871));
 function issueRemoveLabel(client, issueNumber, name) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(`Should remove label`, {
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            issue_number: issueNumber,
+            name
+        });
         yield client.issues.removeLabel({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,

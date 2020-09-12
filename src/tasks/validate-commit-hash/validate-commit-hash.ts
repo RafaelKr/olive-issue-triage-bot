@@ -28,6 +28,8 @@ export async function validateCommitHash(
 
   const commit = findCommit(client, config, commitHash);
 
+  console.log({ commit })
+
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
     await issueRemoveLabel(client, issue.number, label);
@@ -94,11 +96,8 @@ async function findCommit(
 
   const response = await client.repos.listCommits(params);
 
-  console.log({ params, response })
-
   for (const commit of response.data) {
     if (commit.sha.indexOf(commitHash) === 0) {
-      console.log({ commit, commitHash })
       return commit;
     }
   }
