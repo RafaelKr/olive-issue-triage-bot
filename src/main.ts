@@ -1,7 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import {Octokit} from '@octokit/rest';
-import matcher from 'matcher';
 
 type Issue = Octokit.IssuesGetResponse;
 
@@ -52,43 +51,40 @@ async function processIssue(
   config: TriageBotConfig,
   issueId: number
 ) {
-  let issue: Issue = await getIssue(client, issueId);
+  const issue: Issue = await getIssue(client, issueId);
+  const commitHash = extractCommitHash(issue);
 
-  if (issue.labels.length > 0) {
-    console.log('This issue already has labels, skipping...');
+  console.log({commitHash});
+}
+
+function extractCommitHash(issue: Issue) {
+  const hashOpeningTag = '<!-- HASH -->';
+  const hashClosingTag = '<!-- /HASH -->';
+  const hashRegex = /^\s*?(\w+)\s*$/m;
+
+  const hashStartPosition =
+    issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
+
+  if (hashStartPosition === -1) {
+    console.log(`Hash opening tag (${hashOpeningTag}) could not be found`);
     return;
   }
 
-  let matchingLabels: Array<string> = [];
-  let comments: Array<string> = config.comment ? [config.comment] : [];
-  let lines = issue.body.split(/\r?\n|\r/g);
-  for (let label of config.labels) {
-    if (matcher(lines, label.globs).length > 0) {
-      matchingLabels.push(label.label);
+  const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
 
-      if (label.comment) {
-        comments.push(label.comment);
-      }
-    }
+  if (hashStartPosition === -1) {
+    console.log(`Hash closing tag (${hashClosingTag}) could not be found`);
+    return;
   }
 
-  if (matchingLabels.length > 0) {
-    console.log(
-      `Adding labels ${matchingLabels.join(', ')} to issue #${issue.number}`
-    );
+  const hashTagContent = issue.body.slice(hashStartPosition, hashEndPosition);
+  const hashMatch = hashTagContent.match(hashRegex);
 
-    await addLabels(client, issue.number, matchingLabels);
-
-    if (comments.length) {
-      await writeComment(client, issue.number, comments.join('\n\n'));
-    }
-  } else if (config.no_label_comment) {
-    console.log(
-      `Adding comment to issue #${issue.number}, because no labels match`
-    );
-
-    await writeComment(client, issue.number, config.no_label_comment);
+  if (!hashMatch || !hashMatch[1]) {
+    return;
   }
+
+  return hashMatch[1];
 }
 
 async function writeComment(
@@ -146,12 +142,10 @@ async function getConfig(
 }
 
 function getAndValidateArgs(): Args {
-  const args = {
+  return {
     repoToken: core.getInput('repo-token', {required: true}),
-    configPath: core.getInput('config-path', {required: true})
+    configPath: core.getInput('config-path', {required: false})
   };
-
-  return args;
 }
 
 run();

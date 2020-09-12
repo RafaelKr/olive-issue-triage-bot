@@ -2959,13 +2959,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
-const matcher_1 = __importDefault(__webpack_require__(167));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -2990,34 +2986,31 @@ function run() {
 }
 function processIssue(client, config, issueId) {
     return __awaiter(this, void 0, void 0, function* () {
-        let issue = yield getIssue(client, issueId);
-        if (issue.labels.length > 0) {
-            console.log('This issue already has labels, skipping...');
-            return;
-        }
-        let matchingLabels = [];
-        let comments = config.comment ? [config.comment] : [];
-        let lines = issue.body.split(/\r?\n|\r/g);
-        for (let label of config.labels) {
-            if (matcher_1.default(lines, label.globs).length > 0) {
-                matchingLabels.push(label.label);
-                if (label.comment) {
-                    comments.push(label.comment);
-                }
-            }
-        }
-        if (matchingLabels.length > 0) {
-            console.log(`Adding labels ${matchingLabels.join(', ')} to issue #${issue.number}`);
-            yield addLabels(client, issue.number, matchingLabels);
-            if (comments.length) {
-                yield writeComment(client, issue.number, comments.join('\n\n'));
-            }
-        }
-        else if (config.no_label_comment) {
-            console.log(`Adding comment to issue #${issue.number}, because no labels match`);
-            yield writeComment(client, issue.number, config.no_label_comment);
-        }
+        const issue = yield getIssue(client, issueId);
+        const commitHash = extractCommitHash(issue);
+        console.log({ commitHash });
     });
+}
+function extractCommitHash(issue) {
+    const hashOpeningTag = '<!-- HASH -->';
+    const hashClosingTag = '<!-- /HASH -->';
+    const hashRegex = /^\s*?(\w+)\s*$/m;
+    const hashStartPosition = issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
+    if (hashStartPosition === -1) {
+        console.log(`Hash opening tag (${hashOpeningTag}) could not be found`);
+        return;
+    }
+    const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
+    if (hashStartPosition === -1) {
+        console.log(`Hash closing tag (${hashClosingTag}) could not be found`);
+        return;
+    }
+    const hashTagContent = issue.body.slice(hashStartPosition, hashEndPosition);
+    const hashMatch = hashTagContent.match(hashRegex);
+    if (!hashMatch || !hashMatch[1]) {
+        return;
+    }
+    return hashMatch[1];
 }
 function writeComment(client, issueId, body) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -3061,32 +3054,12 @@ function getConfig(client, configPath) {
     });
 }
 function getAndValidateArgs() {
-    const args = {
+    return {
         repoToken: core.getInput('repo-token', { required: true }),
-        configPath: core.getInput('config-path', { required: true })
+        configPath: core.getInput('config-path', { required: false })
     };
-    return args;
 }
 run();
-
-
-/***/ }),
-
-/***/ 138:
-/***/ (function(module) {
-
-"use strict";
-
-
-const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g;
-
-module.exports = string => {
-	if (typeof string !== 'string') {
-		throw new TypeError('Expected a string');
-	}
-
-	return string.replace(matchOperatorsRegex, '\\$&');
-};
 
 
 /***/ }),
@@ -3461,91 +3434,6 @@ const { paginateRest } = __webpack_require__(299);
 function paginatePlugin(octokit) {
   Object.assign(octokit, paginateRest(octokit));
 }
-
-
-/***/ }),
-
-/***/ 167:
-/***/ (function(module, __unusedexports, __webpack_require__) {
-
-"use strict";
-
-const escapeStringRegexp = __webpack_require__(138);
-
-const regexpCache = new Map();
-
-function makeRegexp(pattern, options) {
-	options = {
-		caseSensitive: false,
-		...options
-	};
-
-	const cacheKey = pattern + JSON.stringify(options);
-
-	if (regexpCache.has(cacheKey)) {
-		return regexpCache.get(cacheKey);
-	}
-
-	const negated = pattern[0] === '!';
-
-	if (negated) {
-		pattern = pattern.slice(1);
-	}
-
-	pattern = escapeStringRegexp(pattern).replace(/\\\*/g, '.*');
-
-	const regexp = new RegExp(`^${pattern}$`, options.caseSensitive ? '' : 'i');
-	regexp.negated = negated;
-	regexpCache.set(cacheKey, regexp);
-
-	return regexp;
-}
-
-module.exports = (inputs, patterns, options) => {
-	if (!(Array.isArray(inputs) && Array.isArray(patterns))) {
-		throw new TypeError(`Expected two arrays, got ${typeof inputs} ${typeof patterns}`);
-	}
-
-	if (patterns.length === 0) {
-		return inputs;
-	}
-
-	const firstNegated = patterns[0][0] === '!';
-
-	patterns = patterns.map(pattern => makeRegexp(pattern, options));
-
-	const result = [];
-
-	for (const input of inputs) {
-		// If first pattern is negated we include everything to match user expectation
-		let matches = firstNegated;
-
-		for (const pattern of patterns) {
-			if (pattern.test(input)) {
-				matches = !pattern.negated;
-			}
-		}
-
-		if (matches) {
-			result.push(input);
-		}
-	}
-
-	return result;
-};
-
-module.exports.isMatch = (input, pattern, options) => {
-	const inputArray = Array.isArray(input) ? input : [input];
-	const patternArray = Array.isArray(pattern) ? pattern : [pattern];
-
-	return inputArray.some(input => {
-		return patternArray.every(pattern => {
-			const regexp = makeRegexp(pattern, options);
-			const matches = regexp.test(input);
-			return regexp.negated ? !matches : matches;
-		});
-	});
-};
 
 
 /***/ }),
