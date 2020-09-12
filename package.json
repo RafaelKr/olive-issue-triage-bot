@@ -26,6 +26,7 @@
     "@actions/core": "^1.2.1",
     "@actions/github": "^2.0.1",
     "@octokit/rest": "^16.36.0",
+    "date-fns": "^2.16.1",
     "matcher": "^2.1.0",
     "semver": "^6.1.1"
   },

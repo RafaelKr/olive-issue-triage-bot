@@ -1,6 +1,9 @@
 import * as github from '@actions/github';
-import {Issue, TriageBotConfig} from '~/models';
 import {Octokit} from '@octokit/rest';
+
+import {subDays, startOfDay} from 'date-fns';
+
+import {Issue, TriageBotConfig} from '~/models';
 import {issueAddLabels} from '~/utils/issue-add-labels';
 import {issueRemoveLabel} from '~/utils/issue-remove-labels';
 
@@ -79,9 +82,17 @@ async function findCommit(
     repo: github.context.repo.repo
   };
 
-  if (userParams.per_page) {
+  if (typeof userParams.per_page === 'number') {
     params.per_page = userParams.per_page;
   }
+
+  if (typeof userParams.since_in_days === 'number') {
+    // subtract days from now. use start of date.
+    const date = startOfDay(subDays(new Date(), userParams.since_in_days));
+    params.since = date.toISOString();
+  }
+
+  console.log({ params })
 
   const response = await client.repos.listCommits(params);
 

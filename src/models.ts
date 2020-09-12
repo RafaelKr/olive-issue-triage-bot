@@ -13,8 +13,8 @@ export interface TriageBotConfig {
     hash_closing_tag: string;
     label: string;
     commits_api_params: {
-      per_page: number;
-      since_in_days: number;
+      per_page?: number;
+      since_in_days?: number;
     };
   };
 }
