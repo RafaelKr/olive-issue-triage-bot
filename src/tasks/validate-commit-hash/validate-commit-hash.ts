@@ -12,14 +12,13 @@ export function validateCommitHash(
   const label = config.validate_commit_hash.label;
 
   if (!label) {
-    console.log(`[validateCommitHash] Config file doesn't contain a label at validate_commit_hash.label`);
+    log(`Config file doesn't contain a label at validate_commit_hash.label`);
     return;
   }
 
   const commitHash = extractCommitHash(config, issue);
 
   if (!commitHash) {
-    console.log(`[validateCommitHash] Couldn't extract commit hash from issue body.`);
     issueRemoveLabel(client, issue.id, label);
     return;
   }
@@ -27,7 +26,7 @@ export function validateCommitHash(
   const commit = findCommit(client, config, commitHash);
 
   if (!commit) {
-    console.log(`[validateCommitHash] Commit was not found or didn't match config.`);
+    log(`Commit was not found or didn't match config.`);
     issueRemoveLabel(client, issue.id, label);
     return;
   }
@@ -41,20 +40,20 @@ function extractCommitHash(
 ) {
   const hashOpeningTag = config.validate_commit_hash.hash_opening_tag;
   const hashClosingTag = config.validate_commit_hash.hash_closing_tag;
-  const hashRegex = /^\s*?(\w+)\s*$/m;
+  const hashRegex = /^\s*?(\w{7,})\s*$/m;
 
   const hashStartPosition =
     issue.body.indexOf(hashOpeningTag) + hashOpeningTag.length;
 
   if (hashStartPosition === -1) {
-    console.log(`Hash opening tag (${hashOpeningTag}) could not be found`);
+    log(`Hash opening tag (${hashOpeningTag}) could not be found`);
     return;
   }
 
   const hashEndPosition = issue.body.indexOf(hashClosingTag, hashStartPosition);
 
   if (hashStartPosition === -1) {
-    console.log(`Hash closing tag (${hashClosingTag}) could not be found`);
+    log(`Hash closing tag (${hashClosingTag}) could not be found`);
     return;
   }
 
@@ -62,6 +61,7 @@ function extractCommitHash(
   const hashMatch = hashTagContent.match(hashRegex);
 
   if (!hashMatch || !hashMatch[1]) {
+    log(`Couldn't extract valid commit hash from issue body.`);
     return;
   }
 
@@ -92,4 +92,8 @@ async function findCommit(
   }
 
   return null;
+}
+
+function log(...args) {
+  console.log('[validateCommitHash]', ...args)
 }
