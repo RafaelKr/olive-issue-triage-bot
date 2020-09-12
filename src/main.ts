@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import * as Octokit from '@octokit/rest';
+import {Octokit} from '@octokit/rest';
 import matcher from 'matcher';
 
 type Issue = Octokit.IssuesGetResponse;
