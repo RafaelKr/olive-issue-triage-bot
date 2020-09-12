@@ -40,7 +40,11 @@ async function processIssue(
   const issue: Issue = await getIssueDetails(client, issueId);
 
   if (config.validate_commit_hash) {
-    validateCommitHash(client, config, issue);
+    try {
+      await validateCommitHash(client, config, issue);
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
@@ -56,7 +60,8 @@ async function getConfig(
   });
 
   // @ts-ignore
-  return JSON.parse(Buffer.from(response.data.content, 'base64').toString());
+  return JSON.parse(Buffer.from(response.data.content, 'base64')
+    .toString());
 }
 
 function getAndValidateArgs(): Args {

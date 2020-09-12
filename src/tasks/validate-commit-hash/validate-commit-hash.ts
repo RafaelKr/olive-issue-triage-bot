@@ -4,7 +4,7 @@ import {Octokit} from '@octokit/rest';
 import {issueAddLabels} from '~/utils/issue-add-labels';
 import {issueRemoveLabel} from '~/utils/issue-remove-labels';
 
-export function validateCommitHash(
+export async function validateCommitHash(
   client: github.GitHub,
   config: TriageBotConfig,
   issue: Issue
@@ -19,7 +19,7 @@ export function validateCommitHash(
   const commitHash = extractCommitHash(config, issue);
 
   if (!commitHash) {
-    issueRemoveLabel(client, issue.id, label);
+    await issueRemoveLabel(client, issue.id, label);
     return;
   }
 
@@ -27,11 +27,11 @@ export function validateCommitHash(
 
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
-    issueRemoveLabel(client, issue.id, label);
+    await issueRemoveLabel(client, issue.id, label);
     return;
   }
 
-  issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+  await issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
 }
 
 function extractCommitHash(
@@ -95,5 +95,5 @@ async function findCommit(
 }
 
 function log(...args) {
-  console.log('[validateCommitHash]', ...args)
+  console.log('[validateCommitHash]', ...args);
 }

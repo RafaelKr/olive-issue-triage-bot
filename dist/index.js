@@ -25273,7 +25273,12 @@ function processIssue(client, config, issueId) {
     return __awaiter(this, void 0, void 0, function* () {
         const issue = yield issue_details_1.getIssueDetails(client, issueId);
         if (config.validate_commit_hash) {
-            tasks_1.validateCommitHash(client, config, issue);
+            try {
+                yield tasks_1.validateCommitHash(client, config, issue);
+            }
+            catch (e) {
+                console.error(e);
+            }
         }
     });
 }
@@ -25381,23 +25386,25 @@ const github = __importStar(__webpack_require__(7871));
 const issue_add_labels_1 = __webpack_require__(4548);
 const issue_remove_labels_1 = __webpack_require__(4968);
 function validateCommitHash(client, config, issue) {
-    const label = config.validate_commit_hash.label;
-    if (!label) {
-        log(`Config file doesn't contain a label at validate_commit_hash.label`);
-        return;
-    }
-    const commitHash = extractCommitHash(config, issue);
-    if (!commitHash) {
-        issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
-        return;
-    }
-    const commit = findCommit(client, config, commitHash);
-    if (!commit) {
-        log(`Commit was not found or didn't match config.`);
-        issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
-        return;
-    }
-    issue_add_labels_1.issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+    return __awaiter(this, void 0, void 0, function* () {
+        const label = config.validate_commit_hash.label;
+        if (!label) {
+            log(`Config file doesn't contain a label at validate_commit_hash.label`);
+            return;
+        }
+        const commitHash = extractCommitHash(config, issue);
+        if (!commitHash) {
+            yield issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+            return;
+        }
+        const commit = findCommit(client, config, commitHash);
+        if (!commit) {
+            log(`Commit was not found or didn't match config.`);
+            yield issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+            return;
+        }
+        yield issue_add_labels_1.issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+    });
 }
 exports.validateCommitHash = validateCommitHash;
 function extractCommitHash(config, issue) {
