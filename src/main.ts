@@ -60,8 +60,7 @@ async function getConfig(
   });
 
   // @ts-ignore
-  return JSON.parse(Buffer.from(response.data.content, 'base64')
-    .toString());
+  return JSON.parse(Buffer.from(response.data.content, 'base64').toString());
 }
 
 function getAndValidateArgs(): Args {

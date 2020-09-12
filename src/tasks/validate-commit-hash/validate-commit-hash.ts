@@ -19,7 +19,7 @@ export async function validateCommitHash(
   const commitHash = extractCommitHash(config, issue);
 
   if (!commitHash) {
-    await issueRemoveLabel(client, issue.id, label);
+    await issueRemoveLabel(client, issue.number, label);
     return;
   }
 
@@ -27,11 +27,11 @@ export async function validateCommitHash(
 
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
-    await issueRemoveLabel(client, issue.id, label);
+    await issueRemoveLabel(client, issue.number, label);
     return;
   }
 
-  await issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+  await issueAddLabels(client, issue.number, [config.validate_commit_hash.label]);
 }
 
 function extractCommitHash(

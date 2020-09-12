@@ -25394,16 +25394,16 @@ function validateCommitHash(client, config, issue) {
         }
         const commitHash = extractCommitHash(config, issue);
         if (!commitHash) {
-            yield issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+            yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
             return;
         }
         const commit = findCommit(client, config, commitHash);
         if (!commit) {
             log(`Commit was not found or didn't match config.`);
-            yield issue_remove_labels_1.issueRemoveLabel(client, issue.id, label);
+            yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
             return;
         }
-        yield issue_add_labels_1.issueAddLabels(client, issue.id, [config.validate_commit_hash.label]);
+        yield issue_add_labels_1.issueAddLabels(client, issue.number, [config.validate_commit_hash.label]);
     });
 }
 exports.validateCommitHash = validateCommitHash;
@@ -25491,12 +25491,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issueAddLabels = void 0;
 const github = __importStar(__webpack_require__(7871));
-function issueAddLabels(client, issueId, labels) {
+function issueAddLabels(client, issueNumber, labels) {
     return __awaiter(this, void 0, void 0, function* () {
         yield client.issues.addLabels({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
-            issue_number: issueId,
+            issue_number: issueNumber,
             labels
         });
     });
@@ -25592,12 +25592,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issueRemoveLabel = void 0;
 const github = __importStar(__webpack_require__(7871));
-function issueRemoveLabel(client, issueId, name) {
+function issueRemoveLabel(client, issueNumber, name) {
     return __awaiter(this, void 0, void 0, function* () {
         yield client.issues.removeLabel({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
-            issue_number: issueId,
+            issue_number: issueNumber,
             name
         });
     });
