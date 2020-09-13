@@ -23,8 +23,6 @@ async function run() {
     core.info(`Loading config file at ${args.configPath}`);
     const config = await getConfig(client, args.configPath);
 
-    console.log(config);
-
     await processIssue(client, config, issue.number);
   } catch (error) {
     core.error(error);

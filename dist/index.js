@@ -45271,7 +45271,6 @@ function run() {
             const client = new github.GitHub(args.repoToken);
             core.info(`Loading config file at ${args.configPath}`);
             const config = yield getConfig(client, args.configPath);
-            console.log(config);
             yield processIssue(client, config, issue.number);
         }
         catch (error) {
