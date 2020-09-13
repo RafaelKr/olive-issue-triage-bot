@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 
 import {Issue, TriageBotConfig, Args} from '~/models';
-import {getIssueDetails} from '~/utils/issue-details';
+import {getIssueDetails} from '~/utils/rest/issue-details';
 import {validateCommitHash} from '~/tasks';
 
 async function run() {

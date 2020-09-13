@@ -4,8 +4,8 @@ import {Octokit} from '@octokit/rest';
 import {subDays, startOfDay} from 'date-fns';
 
 import {Issue, TriageBotConfig} from '~/models';
-import {issueAddLabels} from '~/utils/issue-add-labels';
-import {issueRemoveLabel} from '~/utils/issue-remove-labels';
+import {issueAddLabels} from '~/utils/rest/issue-add-labels';
+import {issueRemoveLabel} from '~/utils/rest/issue-remove-labels';
 
 export async function validateCommitHash(
   client: github.GitHub,
