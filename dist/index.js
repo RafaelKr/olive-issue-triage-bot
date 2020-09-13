@@ -48376,22 +48376,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(1449));
 const github = __importStar(__webpack_require__(7871));
-const issue_details_1 = __webpack_require__(2368);
 const tasks_1 = __webpack_require__(8682);
+const action_args_util_1 = __webpack_require__(9429);
+const config_util_1 = __webpack_require__(5054);
+const issue_details_1 = __webpack_require__(2368);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const args = getAndValidateArgs();
-            let issue = github.context.payload.issue;
-            if (!issue) {
-                core.error('No issue context found. This action can only run on issue creation.');
-                return;
-            }
-            core.info('Starting GitHub Client');
-            const client = new github.GitHub(args.repoToken);
-            core.info(`Loading config file at ${args.configPath}`);
-            const config = yield getConfig(client, args.configPath);
-            yield processIssue(client, config, issue.number);
+            core.info(`Loading config file at ${action_args_util_1.args.configPath}`);
+            const config = yield config_util_1.getConfig();
+            yield processIssue(config);
         }
         catch (error) {
             core.error(error);
@@ -48399,36 +48393,23 @@ function run() {
         }
     });
 }
-function processIssue(client, config, issueId) {
+function processIssue(config) {
     return __awaiter(this, void 0, void 0, function* () {
-        const issue = yield issue_details_1.getIssueDetails(client, issueId);
+        const { issue } = github.context.payload;
+        if (!issue) {
+            core.error('No issue context found. This action can only run on issue creation.');
+            return;
+        }
+        const issueDetails = yield issue_details_1.getIssueDetails(issue.number);
         if (config.validate_commit_hash) {
             try {
-                yield tasks_1.validateCommitHash(client, config, issue);
+                yield tasks_1.validateCommitHash(config, issueDetails);
             }
             catch (e) {
                 console.error(e);
             }
         }
     });
-}
-function getConfig(client, configPath) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield client.repos.getContents({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            path: configPath,
-            ref: github.context.sha
-        });
-        // @ts-ignore
-        return JSON.parse(Buffer.from(response.data.content, 'base64').toString());
-    });
-}
-function getAndValidateArgs() {
-    return {
-        repoToken: core.getInput('repo-token', { required: true }),
-        configPath: core.getInput('config-path', { required: false })
-    };
 }
 run();
 
@@ -48516,7 +48497,8 @@ const github = __importStar(__webpack_require__(7871));
 const date_fns_1 = __webpack_require__(6405);
 const issue_add_labels_1 = __webpack_require__(9533);
 const issue_remove_labels_1 = __webpack_require__(2531);
-function validateCommitHash(client, config, issue) {
+const github_client_util_1 = __webpack_require__(5190);
+function validateCommitHash(config, issue) {
     return __awaiter(this, void 0, void 0, function* () {
         const label = config.validate_commit_hash.label;
         if (!label) {
@@ -48525,16 +48507,16 @@ function validateCommitHash(client, config, issue) {
         }
         const commitHash = extractCommitHash(config, issue);
         if (!commitHash) {
-            yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
+            yield issue_remove_labels_1.issueRemoveLabel(issue.number, label);
             return;
         }
-        const commit = yield findCommit(client, config, commitHash, new Date(issue.created_at));
+        const commit = yield findCommit(config, commitHash, new Date(issue.created_at));
         if (!commit) {
             log(`Commit was not found or didn't match config.`);
-            yield issue_remove_labels_1.issueRemoveLabel(client, issue.number, label);
+            yield issue_remove_labels_1.issueRemoveLabel(issue.number, label);
             return;
         }
-        yield issue_add_labels_1.issueAddLabels(client, issue.number, [config.validate_commit_hash.label]);
+        yield issue_add_labels_1.issueAddLabels(issue.number, [config.validate_commit_hash.label]);
     });
 }
 exports.validateCommitHash = validateCommitHash;
@@ -48560,7 +48542,7 @@ function extractCommitHash(config, issue) {
     }
     return hashMatch[1];
 }
-function findCommit(client, config, commitHash, issueDate = new Date()) {
+function findCommit(config, commitHash, issueDate = new Date()) {
     return __awaiter(this, void 0, void 0, function* () {
         const userParams = config.validate_commit_hash.commits_api_params;
         let params = {
@@ -48575,7 +48557,7 @@ function findCommit(client, config, commitHash, issueDate = new Date()) {
             const date = date_fns_1.startOfDay(date_fns_1.subDays(issueDate, userParams.since_in_days));
             params.since = date.toISOString();
         }
-        const response = yield client.repos.listCommits(params);
+        const response = yield github_client_util_1.githubClient.repos.listCommits(params);
         for (const commit of response.data) {
             if (commit.sha.indexOf(commitHash) === 0) {
                 return commit;
@@ -48587,6 +48569,134 @@ function findCommit(client, config, commitHash, issueDate = new Date()) {
 function log(...args) {
     console.log('[validateCommitHash]', ...args);
 }
+
+
+/***/ }),
+
+/***/ 9429:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.args = void 0;
+const core = __importStar(__webpack_require__(1449));
+exports.args = {
+    repoToken: core.getInput('repo-token', { required: true }),
+    configPath: core.getInput('config-path', { required: true })
+};
+
+
+/***/ }),
+
+/***/ 5054:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getConfig = void 0;
+const github = __importStar(__webpack_require__(7871));
+const action_args_util_1 = __webpack_require__(9429);
+const github_client_util_1 = __webpack_require__(5190);
+let config;
+function getConfig() {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (config) {
+            return config;
+        }
+        const response = yield github_client_util_1.githubClient.repos.getContents({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            path: action_args_util_1.args.configPath,
+            ref: github.context.sha
+        });
+        // @ts-ignore
+        config = JSON.parse(Buffer.from(response.data.content, 'base64').toString());
+        return config;
+    });
+}
+exports.getConfig = getConfig;
+
+
+/***/ }),
+
+/***/ 5190:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.githubClient = void 0;
+const github = __importStar(__webpack_require__(7871));
+const action_args_util_1 = __webpack_require__(9429);
+exports.githubClient = new github.GitHub(action_args_util_1.args.repoToken);
 
 
 /***/ }),
@@ -48627,9 +48737,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issueAddLabels = void 0;
 const github = __importStar(__webpack_require__(7871));
-function issueAddLabels(client, issueNumber, labels) {
+const github_client_util_1 = __webpack_require__(5190);
+function issueAddLabels(issueNumber, labels) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield client.issues.addLabels({
+        yield github_client_util_1.githubClient.issues.addLabels({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: issueNumber,
@@ -48678,10 +48789,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getIssueDetails = void 0;
 const github = __importStar(__webpack_require__(7871));
-function getIssueDetails(client, issueId) {
+const github_client_util_1 = __webpack_require__(5190);
+function getIssueDetails(issueNumber) {
     return __awaiter(this, void 0, void 0, function* () {
-        return (yield client.issues.get({
-            issue_number: issueId,
+        return (yield github_client_util_1.githubClient.issues.get({
+            issue_number: issueNumber,
             owner: github.context.repo.owner,
             repo: github.context.repo.repo
         })).data;
@@ -48728,9 +48840,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.issueRemoveLabel = void 0;
 const github = __importStar(__webpack_require__(7871));
-function issueRemoveLabel(client, issueNumber, name) {
+const github_client_util_1 = __webpack_require__(5190);
+function issueRemoveLabel(issueNumber, name) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield client.issues.removeLabel({
+        yield github_client_util_1.githubClient.issues.removeLabel({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: issueNumber,

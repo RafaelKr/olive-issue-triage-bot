@@ -1,14 +1,14 @@
 import * as github from '@actions/github';
 
 import {Issue} from '~/models';
+import {githubClient} from '~/utils/github-client.util';
 
 export async function getIssueDetails(
-  client: github.GitHub,
-  issueId: number
+  issueNumber: number
 ): Promise<Issue> {
   return (
-    await client.issues.get({
-      issue_number: issueId,
+    await githubClient.issues.get({
+      issue_number: issueNumber,
       owner: github.context.repo.owner,
       repo: github.context.repo.repo
     })

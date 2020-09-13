@@ -6,9 +6,9 @@ import {subDays, startOfDay} from 'date-fns';
 import {Issue, TriageBotConfig} from '~/models';
 import {issueAddLabels} from '~/utils/rest/issue-add-labels';
 import {issueRemoveLabel} from '~/utils/rest/issue-remove-labels';
+import {githubClient} from '~/utils/github-client.util';
 
 export async function validateCommitHash(
-  client: github.GitHub,
   config: TriageBotConfig,
   issue: Issue
 ) {
@@ -22,19 +22,19 @@ export async function validateCommitHash(
   const commitHash = extractCommitHash(config, issue);
 
   if (!commitHash) {
-    await issueRemoveLabel(client, issue.number, label);
+    await issueRemoveLabel(issue.number, label);
     return;
   }
 
-  const commit = await findCommit(client, config, commitHash, new Date(issue.created_at));
+  const commit = await findCommit(config, commitHash, new Date(issue.created_at));
 
   if (!commit) {
     log(`Commit was not found or didn't match config.`);
-    await issueRemoveLabel(client, issue.number, label);
+    await issueRemoveLabel(issue.number, label);
     return;
   }
 
-  await issueAddLabels(client, issue.number, [config.validate_commit_hash.label]);
+  await issueAddLabels(issue.number, [config.validate_commit_hash.label]);
 }
 
 function extractCommitHash(
@@ -72,10 +72,9 @@ function extractCommitHash(
 }
 
 async function findCommit(
-  client: github.GitHub,
   config: TriageBotConfig,
   commitHash: string,
-  issueDate: Date = new Date(),
+  issueDate: Date = new Date()
 ) {
   const userParams = config.validate_commit_hash.commits_api_params;
   let params: Octokit.RequestOptions & Octokit.ReposListCommitsParams = {
@@ -93,7 +92,7 @@ async function findCommit(
     params.since = date.toISOString();
   }
 
-  const response = await client.repos.listCommits(params);
+  const response = await githubClient.repos.listCommits(params);
 
   for (const commit of response.data) {
     if (commit.sha.indexOf(commitHash) === 0) {
